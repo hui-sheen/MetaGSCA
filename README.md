@@ -2,6 +2,7 @@
 
 library('devtools')
 
-install_github('Haocan223/MetaGSCA')
+install_github('hui-sheen/MetaGSCA')
 
-[Tutorial](https://haocan223.github.io/MetaGSCA/MetaGSCA_tutorial.html)
+[Tutorial](https://hui-sheen.github.io/MetaGSCA/MetaGSCA_tutorial.html)
+[Source of 379 enclosed pathways](inst/extdata/PathwaySource.txt)
