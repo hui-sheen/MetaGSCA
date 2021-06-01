@@ -1,0 +1,17 @@
+Package: MetaGSCA
+Type: Package
+Title: Meta Gene Set Co-expression Analysis
+Version: 1.0.0
+Date: 2021-6-1
+Authors@R: c(person("Yan", "Guo", role = c("aut"), 
+            email = "yanguo1978@gmail.com"), 
+        person("Fei", "Ye", role="aut", email = "fei.ye@vumc.org"),
+        person("Hui", "Yu", role=c("ctb", "cre"), 
+            email = "schena.yu@gmail.com",comment=c(ORCID="0000-0002-4491-8855"))
+Depends: R (>= 3.0.1), data.table, meta, grid, sjstats, igraph
+Description: MetaGSCA systematically assesses the coexpression disturbance of a gene set by pooling the results from individual studies. A nonparametric approach named GSNCA (Rahmatallah 2014, Bioinformatics) is used to test whether the gene set is differentially co-expresssed between the two conditions, and a permutation test p-value is computed. Bootstrap-ping is used to construct confidence intervals of p-values. Meta-analysis is offered through two options: random-intercept logistic regression model and the inverse variance method. Lastly, a pathway crosstalk network is delineated based on the meta-analysis result outputted from the prior steps. 
+License: GPL (>= 2)
+Encoding: UTF-8
+LazyData: false
+biocViews: Software, DifferentialExpression, StatisticalMethod
+RoxygenNote: 7.1.1
