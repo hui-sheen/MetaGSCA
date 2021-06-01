@@ -1,2 +1,0 @@
-import(data.table, meta, grid, sjstats, igraph)
-export(PWcTalkNW,PWcTalkNWpre,PWcTalk,MetaGSCA,MetaGSCA_Multi_Geneset,GSAR_boot)
