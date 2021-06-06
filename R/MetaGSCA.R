@@ -7,13 +7,29 @@
 #' Logit transformation is applied to the binary outcome and regressed on the study variable in fixed effects or random effects logistic model. Define the logit(p) as effect size (ES), it can be estimated using two approaches: in-verse variance method and generalized linear mixed model (GLMM) with fixed intercept. The interval estimation is provided from these methods as well as from the bootstrap approach.
 #'
 #' @export
-#' @param list.geneset list of gene sets (one or multiple).
+#' @examples
+#' data(meta)
+#' data(BRCA)
+#' data(COAD)
+#' data(HNSC)
+#' data3 <- c('BRCA','COAD','HNSC')
+#' testSingle <- MetaGSCA(list.geneset = genesets[2],
+#'         list.dataset = list(BRCA=BRCA,COAD=COAD,HNSC=HNSC), 
+#'         list.group = groups[data3],
+#'         names.geneset = names(genesets)[2],
+#'         names.dataset = data3,
+#'         nperm = 100,
+#'         nboot = 100,
+#'         method = 'GLMM',
+#'         effect = 'random')
+#'
+#' @param list.geneset a list of gene sets (one or multiple).
 #' @param list.dataset a list of datasets, first column is gene name.
-#' @param a list of samples/patients subgroup or condition (e.g. (1,1,1,2,2,2)).
+#' @param list.group a list of samples/patients subgroup or condition (e.g. (1,1,1,2,2,2)).
 #' @param names.geneset gene set names, corresponding to list.geneset
 #' @param names.dataset dataset names, corresponding to list.dataset
 #' @param nperm number of permutations used to estimate the null distribution of the test statistic. If not given, a default value 500 is used.
-#' @param number of bootstraps used to estimate the point and interval estimate. If not given, a default value 200 is used.
+#' @param nboot number of bootstraps used to estimate the point and interval estimate. If not given, a default value 200 is used.
 #' @param method meta-analysis method. Must be either `GLMM` or `Inverse`.
 #' @param effect statistical model applied in meta-analysis. Must be either `random` or `fixed`.
 MetaGSCA <- function(list.geneset,  ## a pre-specified gene list from a gene set or pathway
@@ -36,7 +52,6 @@ MetaGSCA <- function(list.geneset,  ## a pre-specified gene list from a gene set
 			stop("The length of the 'list.dataset' and the length of the 'list.group' must be equal")
 	if (length(names.dataset) != length(list.dataset))
 			stop("The length of the 'list.dataset' and the length of the 'names.dataset' must be equal")
-
 	names(list.geneset) <- names.geneset
 	names(list.dataset) <- names.dataset
 	# GSAR_boot Analysis

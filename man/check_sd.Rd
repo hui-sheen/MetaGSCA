@@ -22,12 +22,12 @@ list of retained genes and to-be-removed genes for STD reason
 Check if data matrix per group has a minimum or higher per-gene STD
 }
 \examples{
-data(BRCA)
-N <- ncol(BRCA)
-n1 <- floor(N/2)
-objt1 <- t(BRCA[,1:n1])
-objt2 <- t(BRCA[,(n1+1):N])
-genes <- rownames(BRCA)
+data(STAD)
+N <- ncol(STAD)
+n1 <- N\%/\%2
+objt1 <- t(STAD[,1:n1])
+objt2 <- t(STAD[,(n1+1):N])
+genes <- rownames(STAD)
 check.res <- check_sd(objt1,objt2,genes,0.1)
 
 }

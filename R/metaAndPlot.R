@@ -68,14 +68,15 @@ metaAndPlot <- function(lst, ## list of GSAR_boot() results for multiple dataset
 			meta.p[i] <-ifelse(effect=='fixed', exp(m.boot$TE.fixed),exp(m.boot$TE.random))
 		}
   }
-	distinct.label=paste(method,' ',effect,' effect model bootstrapping result (nperm=', nperm, ', nboot=', nboot, ')', sep='')
+	distinct.label=paste(method,' ',effect,' effect model bootstrapping result (nperm=', nperm, ', nboot=', nboot, ') ', sep='')
   if (is.numeric(meta) & method=='GLMM') {
 		print(paste('GLMM bootstrap result (permutation time=', nperm, ', bootstrap time=', nboot, ') ',
 								round(median(meta.p,na.rm=TRUE),4), ' [', round(quantile(meta.p, probs=0.025,na.rm=TRUE),4),
 								', ', round(quantile(meta.p, probs=0.975,na.rm=TRUE),4), ']',
 								sep=''))  
   } else {
-    pdf(file = paste0(name.geneset, '_',method,'_',effect,'_forestPlot.pdf'), width=10, height=3+length(lst)*0.25);
+		png(paste0(name.geneset, '_',method,'_',effect,'_forestPlot.png'), width=960, height=(3+length(lst)*0.25)*60)
+    #pdf(file = paste0(name.geneset, '_',method,'_',effect,'_forestPlot.pdf'), width=10, height=3+length(lst)*0.25);
     MetaGSCA_plot(meta,meta.p,distinct.label)
     dev.off()
   }
