@@ -1,5 +1,9 @@
 ---
 title: <center> <h2>Tutorial of the MetaGSCA package</h2> </center>
+<<<<<<< HEAD
+=======
+author: <center> <h5>Yan Guo, Fei Ye</h5> </center>
+>>>>>>> c5deaf959c1f6bf9e608fc122d74f205ab0c5413
 date: <center> <h4>`r Sys.Date()` </center>
 output: 
   html_document:
@@ -37,6 +41,7 @@ body {
 library(knitr)
 ```
 
+<<<<<<< HEAD
 <font size="4"> **Package: MetaGSCA 1.0.0**</font> 
 
 <font size="4">**Authors:**</font>       
@@ -51,6 +56,19 @@ Hui Yu <schena.yu@gmail.com>
 <font size="3"> In the manuscript, MetaGSCA was demonstrated on over 300 cellular pathways across 11 TCGA datasets. In the present tutorial, we demonstrate the usage of main functions on two pathways across 11 TCGA datasets.</font>
 
 <font size="3"> Packages **data.table, meta (metafor), grid, sjstats, igraph** are required. </font>  
+=======
+<font size="4"> **Package: MetaGSCA 0.1.0**</font> 
+
+# Introduction  
+
+<font size="3"> This tutorial provides an overview and a tutorial of the R package *MetaGSCA*, a tool for Meta Gene Set Co-Expression Analysis. </font>    
+
+<font size="3"> **MetaGSCA** is an analytical tool to systematically assess the co-expression of a specified gene set by aggregating evi-dence across studies. A nonparametric approach that accounts for the gene-gene correlation structure is used to test whether the gene set is differentially co-expressed between two comparative conditions, from which a permutation test p-statistic is computed. A meta-analysis is then performed with one of two options: random-intercept logistic regression model or the inverse variance method, thus yielding a con-clusive result across individual studies. Based on the results from the meta-analysis, a pathway crosstalk network can beis delineated to visually reflect represent pathways’ similar profiles of gene set co-expression across the aligned datasets. </font>      
+
+<font size="3"> In the manuscript, MetaGSCA was demonstrated on over 300 cellular pathways across 11 TCGA datasets. In the present tutorial, we demonstrated the usage of main functions on two pathways across 11 TCGA datasets.</font>
+
+<font size="3"> Packages **data.table, meta(metafor), grid, sjstats, igraph** are required. </font>  
+>>>>>>> c5deaf959c1f6bf9e608fc122d74f205ab0c5413
 
 <font size="3"> The analysis will start by loading package MetaGSCA. </font>       
 ```{r loadLibrary}
@@ -60,7 +78,11 @@ library(MetaGSCA)
 
 # How to use the MetaGSCA package
 
+<<<<<<< HEAD
 <font size="3"> This Section illustrates the typical procedure for applying the main functions provided in package **MetaGSCA**. </font>  
+=======
+<font size="3"> This Section illustrates the typical procedure for applying the methods available in package **MetaGSCA**. </font>  
+>>>>>>> c5deaf959c1f6bf9e608fc122d74f205ab0c5413
 <br>
 
 ## Set Working Directory
@@ -87,6 +109,11 @@ names(datasets) <- Dsetnames
 for (ca in Dsetnames) {
   cmd=paste0('data(',ca,')')
   eval(parse(text=cmd))
+<<<<<<< HEAD
+=======
+  cmd=paste0(ca,'<-data.frame(V1=rownames(',ca,'),',ca,')') # Create first col to meet MetaGSCA requirement.
+  eval(parse(text=cmd))
+>>>>>>> c5deaf959c1f6bf9e608fc122d74f205ab0c5413
   cmd=paste0('datasets[[ca]] <- ',ca)
   eval(parse(text=cmd))
 }
@@ -109,6 +136,7 @@ tmp
 </font>   
 <br>
 
+<<<<<<< HEAD
 ## Usage of Major Functions
 
 ### Meta-analysis of gene set differential correlation (MetaGSCA function)
@@ -140,6 +168,99 @@ testMultiple <- MetaGSCA(list.geneset = genesets[1:2],
                        nboot = 100,
                        method = 'GLMM',
                        effect = 'random')
+=======
+## Case Study
+### Example 1: MetaGSCA 
+#### Code
+
+<font size="3"> **MetaGSCA** is used to perform meta-analysis of gene set co-expression analysis for one single geneset.  </font>   
+
+<font size="4"> **Arguments** </font>  
+<font size="3"> 
+*  ***list.geneset:*** **a** pre-specified gene list from a gene set or pathway.  
+*  ***list.dataset:*** a list of datasets, first column is gene name.  
+*  ***list.group:*** a list of samples/patients subgroup or condition (e.g. (1,1,1,2,2,2)).  
+*  ***name.geneset:*** the name of the gene set, used for output file name.  
+*  ***name.dataset:*** a list of dataset names corresponding to list.dataset, quoted in the forest plot.  
+*  ***nperm:*** number of permutations used to estimate the null distribution of the test statistic. If not given, a default value 500 is used.  
+*  ***nboot:*** number of bootstraps used to estimate the point and interval estimate. If not given, a default value 200 is used.  
+*  ***method.Inverse:*** logical. Indicating whether "Inverse" method is to be used for pooling of studies.  
+*  ***method.GLMM:*** logical. Indicating whether "GLMM" method is to be used for pooling of studies.  
+*  ***fixed.effect:*** logical. Indicating whether a fixed effect meta-analysis should be conducted.  
+*  ***random.effect:*** logical. Indicating whether a random effects meta-analysis should be conducted.   
+</font>     
+
+```{r testSingle,warning=FALSE}
+testSingle <- MetaGSCA(list.geneset = genesets[[2]],
+         list.dataset = datasets,
+         list.group = groups,
+         name.geneset = genesetnames[[2]],
+         name.dataset = datasetnames,
+         nperm = 100,
+         nboot = 100,
+         method.Inverse = FALSE,
+         method.GLMM = TRUE,
+         fixed.effect = FALSE,
+         random.effect = TRUE)
+```
+<br>
+
+#### Parameters
+```{r recapSingleParams}
+genesetnames[2]
+genesets[2]
+```
+<br>
+
+#### Result
+
+<font size="3"> In the working directory, two output files will be generated after **MetaGSCA** execution: a forest plot (.pdf) and a table file (.csv). </font>   
+<br>
+```{r listSingleOutFiles, echo=FALSE}
+dir(pattern=genesetnames[[2]])
+```
+<br>
+
+<font size="3"> The PDF file depicts the forest plot for one gene set across multiple datasets, with random effects model bootstrap result attached at the bottom. </font> 
+```{r showSingleFig, echo=FALSE}
+result1 <- grep('pdf',dir(pattern=genesetnames[[2]]),value=T)
+```
+<br>
+<center>![Forest plot for one gene set across multiple datasets](./`r result1`){width=80%}</center>
+<center><font size="3"> _Forest plot for one gene set across multiple datasets (Scroll down)_</font></center>
+<br>
+<font size="3"> The CSV file includes the output statistics information across multiple datasets. Here we only show information for the first two datasets.</font> 
+<center> <font size="3">_`r genesetnames[2]`_ </font></center>  
+```{r showSingleCsv,echo=FALSE}
+result2 <- grep('csv',dir(pattern=genesetnames[[2]]),value=T)
+t(read.csv(result2,row.names=1))[,1:2]
+```
+<br>
+
+### Example 2: MetaGSCA_Multi_Geneset
+
+#### Code
+<font size="3"> **MetaGSCA_Multi_Geneset** is used to perform meta-analysis of gene set co-expression analysis for multiple genesets.  </font>    
+
+<font size="4"> **Arguments** </font>  
+<font size="3"> 
+*  ***list.geneset:*** a list object, capturing multiple pre-specified gene sets (pathways).    
+*  ***name.geneset:*** the names of the gene sets, used for output file name.  
+</font>  
+
+```{r testMultiple, warning=FALSE}
+testMultiple <- MetaGSCA_Multi_Geneset(list.geneset = genesets[1:2],
+                       list.dataset = datasets,
+                       list.group = groups,
+                       name.geneset = genesetnames[1:2],
+                       name.dataset = datasetnames,
+                       nperm = 100,
+                       nboot = 100,
+                       method.Inverse = FALSE,
+                       method.GLMM = TRUE,
+                       fixed.effect = FALSE,
+                       random.effect = TRUE)
+>>>>>>> c5deaf959c1f6bf9e608fc122d74f205ab0c5413
 ```
 <br>
 
@@ -154,6 +275,7 @@ genesets[1:2]
 
 #### Result
 
+<<<<<<< HEAD
 <font size="3"> In the working directory, two output files will be generated for each gene set: a forest plot (.png) and a table file (.csv). After the command execution, four output files will be generated at the gene-set level, including two forest plots (.png) and two table files (.csv). In addition to these gene-set level files, an overall TSV file will be generated, which assembles output statistics information from multiple gene sets.</font>   
 <br>
 ```{r listMultiOutFiles,echo=FALSE}
@@ -176,17 +298,45 @@ result1 <- grep('png',dir(pattern=genesetnames[2]),value=T)
 <br>
 <center>![multiFig2](./`r result1`){width=150%}</center>
 <center><font size="3"> _Forest plot for another gene set across multiple datasets_</font></center>
+=======
+<font size="3"> Four output files will be generated after **MetaGSCA_Multi_Geneset** execution, two for each gene set. That is, 2 forest plot (.pdf) and 2 table files (.csv). In addition, an overall CSV file will be generated assembling output statistics information from multiple gene sets.</font>   
+<br>
+```{r listMultiOutFiles,echo=FALSE}
+sort(dir(pattern='csv|pdf'))
+```
+<br>
+
+<font size="3"> In each PDF file specific to one gene set, we are able to get the forest plot across multiple datasets, with random effects model bootstrap result attached at the bottom. </font> 
+```{r showMultiFig1, echo=FALSE}
+result1 <- grep('pdf',dir(pattern=genesetnames[[1]]),value=T)
+```
+<br>
+<center>![multiFig1](./`r result1`){width=80%}</center>
+<center><font size="3"> _Forest plot for one gene set across multiple datasets (Scroll down)_</font></center>
+
+```{r showMultiFig2,echo=FALSE}
+result1 <- grep('pdf',dir(pattern=genesetnames[[2]]),value=T)
+```
+<br>
+<center>![multiFig2](./`r result1`){width=80%}</center>
+<center><font size="3"> _Forest plot for another gene set across multiple datasets (Scroll down)_</font></center>
+>>>>>>> c5deaf959c1f6bf9e608fc122d74f205ab0c5413
 
 <font size="3"> The two CSV files each include the output data information for one specific gene set across multiple datasets. Here we only show information for the first two datasets.</font>   
 <center><font size="3">_`r genesetnames[1]`_</font></center>   
 
 ```{r showMultiCsv1,echo=FALSE}
+<<<<<<< HEAD
 result2 <- grep('csv',dir(pattern=genesetnames[1]),value=T)
+=======
+result2 <- grep('csv',dir(pattern=genesetnames[[1]]),value=T)
+>>>>>>> c5deaf959c1f6bf9e608fc122d74f205ab0c5413
 t(read.csv(result2,row.names=1))[,1:2]
 ```
 <br>
 <center><font size="3">_`r genesetnames[2]`_</font></center>
 ```{r showMultiCsv2, echo=FALSE}
+<<<<<<< HEAD
 result2 <- grep('csv',dir(pattern=genesetnames[2]),value=T)
 t(read.csv(result2,row.names=1))[,1:2]
 ```
@@ -194,6 +344,15 @@ t(read.csv(result2,row.names=1))[,1:2]
 <font size="3"> At last, the TSV file **\_Meta Analysis bootstrap result.tsv** assembles the statistics results of all gene sets altogether, including information for all individual datasets. </font>
 
 <font size="4"> **\_Meta Analysis bootstrap result.tsv** </font>  
+=======
+result2 <- grep('csv',dir(pattern=genesetnames[[2]]),value=T)
+t(read.csv(result2,row.names=1))[,1:2]
+```
+<br>
+<font size="3"> At last, the CSV file **\_Meta Analysis bootstrap result.csv** assembles the statistics results of all gene sets altogether, including information for all individual datasets. </font>
+
+<font size="4"> **\_Meta Analysis bootstrap result.csv** </font>  
+>>>>>>> c5deaf959c1f6bf9e608fc122d74f205ab0c5413
 <font size="3"> 
 *  ***Geneset.Name:*** Gene set (pathway) name.  
 *  ***Number.of.Genes:*** Number of genes included in the pathway.  
@@ -204,6 +363,7 @@ t(read.csv(result2,row.names=1))[,1:2]
 </font>     
 
 ```{r showMultiCSV,echo=FALSE}
+<<<<<<< HEAD
 tmp <- read.delim('_Meta Analysis bootstrap result.tsv',as.is=T,row.names=1)
 round(t(tmp),4)
 ```
@@ -227,6 +387,16 @@ testSingle <- MetaGSCA(list.geneset = genesets[2],
 
 ### Pathway Crosstalk Analysis (PWcTalk function)
 <font size="3">For pathway crosstalk analysis, one call __*PWcTalk()*__ function in one line, or alternatively, execute several codelines combining __*PWcTalkpre()*__ and __*PWcTalkNW()*__ to enable greater modulation of network layout. One must execute __*MetaGSCA_Multi_Geneset()*__ function on sufficiently many gene sets (say >100) before attempting pathway crosstalk analysis. To enable swift testing of pathway cross talk analysis, we provide one example input as if it was generated from the prior workflow.</font>
+=======
+tmp <- read.csv('_Meta Analysis bootstrap result.csv',as.is=T,row.names=1)
+round(t(tmp),4)
+```
+<br>
+<br>
+
+### Example 3: Pathway Crosstalk Analysis
+For pathway crosstalk analysis, one call __*PWcTalk*__ function in one line, or alternatively, execute several codelines combining __*PWcTalkpre*__ and __*PWcTalkNW*__ to enable greater modulation of network layout. One must execute __*MetaGSCA_Multi_Geneset*__ function on sufficiently many gene sets (say >100) before attempting pathway crosstalk analysis. To enable swift testing of pathway cross talk analysis, we provide one example input as if it was generated from the prior workflow.
+>>>>>>> c5deaf959c1f6bf9e608fc122d74f205ab0c5413
 
 **Note:** If you are connecting from a Windows desktop to a remote Linux server and run these commands in Linux terminal, you'll need an X11 display assistance (such as **[Xming](https://sourceforge.net/projects/xming/)**) configured and started before you run pathway crosstalk analysis.
 
@@ -251,6 +421,7 @@ knitr::include_graphics(result1)
 ```
 <br>
 
+<<<<<<< HEAD
 ### Auxiliary functions
 #### Gene Sets Net Correlations Analysis (GSNCA related functions)
 <font size="3">
@@ -308,3 +479,7 @@ check.res$genes.removed
 
 # Citing MetaGSCA
 <font size="3">*Guo Y, Yu H, ..., Ye Fei*. __MetaGSCA: A tool for meta-analysis of gene set differential coexpression__. [PLoS computational biology](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008976). 2021;17(5):e1008976. </font>
+=======
+# Citing MetaGSCA
+If you use MetaGSCA in your publication, please cite: XXXXXX
+>>>>>>> c5deaf959c1f6bf9e608fc122d74f205ab0c5413
