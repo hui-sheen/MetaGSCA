@@ -391,7 +391,7 @@ Tutorial of the MetaGSCA package
 </center></h1>
 <h4 class="date"><center>
 <h4>
-2021-06-05
+2021-06-09
 </center></h4>
 
 </div>
@@ -517,57 +517,57 @@ genesetnames &lt;- names(genesets)</code></pre>
                        method = &#39;GLMM&#39;,
                        effect = &#39;random&#39;)</code></pre>
 <pre><code>## 
-## 2021-06-05 13:16:52 Processing dataset: BRCA...
+## 2021-06-09 15:55:29 Processing dataset: BRCA...
 ## 
 ##   Aminosugars metabolism : Results Captured
 ##   p38 MAPK pathway : Results Captured
 ## 
-## 2021-06-05 13:17:39 Processing dataset: COAD...
+## 2021-06-09 15:56:13 Processing dataset: COAD...
 ## 
 ##   Aminosugars metabolism : Results Captured
 ##   p38 MAPK pathway : Results Captured
 ## 
-## 2021-06-05 13:18:20 Processing dataset: HNSC...
+## 2021-06-09 15:56:51 Processing dataset: HNSC...
 ## 
 ##   Aminosugars metabolism : Results Captured
 ##   p38 MAPK pathway : Results Captured
 ## 
-## 2021-06-05 13:19:00 Processing dataset: KIRC...
+## 2021-06-09 15:57:30 Processing dataset: KIRC...
 ## 
 ##   Aminosugars metabolism : Results Captured
 ##   p38 MAPK pathway : Results Captured
 ## 
-## 2021-06-05 13:19:44 Processing dataset: KIRP...
+## 2021-06-09 15:58:11 Processing dataset: KIRP...
 ## 
 ##   Aminosugars metabolism : Results Captured
 ##   p38 MAPK pathway : Results Captured
 ## 
-## 2021-06-05 13:20:23 Processing dataset: LIHC...
+## 2021-06-09 15:58:48 Processing dataset: LIHC...
 ## 
 ##   Aminosugars metabolism : Results Captured
 ##   p38 MAPK pathway : Results Captured
 ## 
-## 2021-06-05 13:21:04 Processing dataset: LUAD...
+## 2021-06-09 15:59:27 Processing dataset: LUAD...
 ## 
 ##   Aminosugars metabolism : Results Captured
 ##   p38 MAPK pathway : Results Captured
 ## 
-## 2021-06-05 13:21:44 Processing dataset: LUSC...
+## 2021-06-09 16:00:07 Processing dataset: LUSC...
 ## 
 ##   Aminosugars metabolism : Results Captured
 ##   p38 MAPK pathway : Results Captured
 ## 
-## 2021-06-05 13:22:26 Processing dataset: PRAD...
+## 2021-06-09 16:00:46 Processing dataset: PRAD...
 ## 
 ##   Aminosugars metabolism : Results Captured
 ##   p38 MAPK pathway : Results Captured
 ## 
-## 2021-06-05 13:23:07 Processing dataset: STAD...
+## 2021-06-09 16:01:26 Processing dataset: STAD...
 ## 
 ##   Aminosugars metabolism : Results Captured
 ##   p38 MAPK pathway : Results Captured
 ## 
-## 2021-06-05 13:23:48 Processing dataset: THCA...
+## 2021-06-09 16:02:04 Processing dataset: THCA...
 ## 
 ##   Aminosugars metabolism : Results Captured
 ##   p38 MAPK pathway : Results Captured</code></pre>
@@ -579,14 +579,13 @@ genesetnames &lt;- names(genesets)</code></pre>
 <pre><code>## [1] &quot;Aminosugars metabolism&quot; &quot;p38 MAPK pathway&quot;</code></pre>
 <pre class="r"><code>genesets[1:2]</code></pre>
 <pre><code>## $`Aminosugars metabolism`
-##  [1] &quot;CMAS&quot;    &quot;GCK&quot;     &quot;GFPT1&quot;   &quot;GFPT2&quot;   &quot;GNE&quot;     &quot;GNPDA1&quot;  &quot;GNPNAT1&quot; &quot;HK1&quot;     &quot;HK2&quot;     &quot;HK3&quot;    
-## [11] &quot;MPI&quot;     &quot;NAGK&quot;    &quot;NANS&quot;    &quot;PGM3&quot;    &quot;RENBP&quot;   &quot;UAP1&quot;   
+##  [1] &quot;CMAS&quot;    &quot;GCK&quot;     &quot;GFPT1&quot;   &quot;GFPT2&quot;   &quot;GNE&quot;     &quot;GNPDA1&quot;  &quot;GNPNAT1&quot; &quot;HK1&quot;     &quot;HK2&quot;     &quot;HK3&quot;     &quot;MPI&quot;     &quot;NAGK&quot;   
+## [13] &quot;NANS&quot;    &quot;PGM3&quot;    &quot;RENBP&quot;   &quot;UAP1&quot;   
 ## 
 ## $`p38 MAPK pathway`
-##  [1] &quot;ATF1&quot;     &quot;DUSP1&quot;    &quot;DUSP10&quot;   &quot;EEF2K&quot;    &quot;EIF4E&quot;    &quot;ELK1&quot;     &quot;GADD45A&quot;  &quot;HSPB1&quot;    &quot;IL1R1&quot;   
-## [10] &quot;MAP2K4&quot;   &quot;MAP2K6&quot;   &quot;MAP3K10&quot;  &quot;MAP3K4&quot;   &quot;MAP3K5&quot;   &quot;MAP3K7&quot;   &quot;MAPK11&quot;   &quot;MAPK12&quot;   &quot;MAPK13&quot;  
-## [19] &quot;MAPK14&quot;   &quot;MAPKAPK2&quot; &quot;MAPKAPK3&quot; &quot;MEF2B&quot;    &quot;MEF2C&quot;    &quot;MEF2D&quot;    &quot;MKNK1&quot;    &quot;MKNK2&quot;    &quot;RPS6KA4&quot; 
-## [28] &quot;RPS6KA5&quot;  &quot;SRF&quot;      &quot;TAB1&quot;     &quot;TAB2&quot;     &quot;TRAF6&quot;</code></pre>
+##  [1] &quot;ATF1&quot;     &quot;DUSP1&quot;    &quot;DUSP10&quot;   &quot;EEF2K&quot;    &quot;EIF4E&quot;    &quot;ELK1&quot;     &quot;GADD45A&quot;  &quot;HSPB1&quot;    &quot;IL1R1&quot;    &quot;MAP2K4&quot;   &quot;MAP2K6&quot;  
+## [12] &quot;MAP3K10&quot;  &quot;MAP3K4&quot;   &quot;MAP3K5&quot;   &quot;MAP3K7&quot;   &quot;MAPK11&quot;   &quot;MAPK12&quot;   &quot;MAPK13&quot;   &quot;MAPK14&quot;   &quot;MAPKAPK2&quot; &quot;MAPKAPK3&quot; &quot;MEF2B&quot;   
+## [23] &quot;MEF2C&quot;    &quot;MEF2D&quot;    &quot;MKNK1&quot;    &quot;MKNK2&quot;    &quot;RPS6KA4&quot;  &quot;RPS6KA5&quot;  &quot;SRF&quot;      &quot;TAB1&quot;     &quot;TAB2&quot;     &quot;TRAF6&quot;</code></pre>
 <p><br></p>
 </div>
 <div id="result" class="section level4" number="2.3.1.3">
@@ -763,7 +762,11 @@ gsnca_gsets.res[1:2]</code></pre>
 ## 
 ## $`2`$stat
 ## [1] 7.532444</code></pre>
-<p><br> #### Scrutiny of gene-wise standard deviation (check_sd function) <font size="3"> Differential co-expression analysis is heavily dependent on the variance of data. If many genes have static expression across samples in either or both experimental conditions, GSNCA or alike algorithms may fail. The main function <em>MetaGSCA()</em> calls on a function <em>check_sd()</em> to pre-check the variance of genes in the input data matrix. Here we make this function <strong><em>check_sd()</em></strong> accessible for users so that they may use it to check on the variance situation of the input data themselves. Input to the function include two data matrices of same number of columns (genes) for two comparative conditions respectively, one vector for gene names (colnames of the two matrices), and a threshold of minimum standard deviation (defaults to 0.001). The output is a list of two components: one vector of gene names for the variance-qualifying genes, and a concatenated string including all disqualifying genes. </font></p>
+<p><br></p>
+</div>
+<div id="scrutiny-of-gene-wise-standard-deviation-check_sd-function" class="section level4" number="2.3.3.2">
+<h4 number="2.3.3.2"><span class="header-section-number">2.3.3.2</span> Scrutiny of gene-wise standard deviation (check_sd function)</h4>
+<p><font size="3"> Differential co-expression analysis is heavily dependent on the variance of data. If many genes have static expression across samples in either or both experimental conditions, GSNCA or alike algorithms may fail. The main function <em>MetaGSCA()</em> calls on a function <em>check_sd()</em> to pre-check the variance of genes in the input data matrix. Here we make this function <strong><em>check_sd()</em></strong> accessible for users so that they may use it to check on the variance situation of the input data themselves. Input to the function include two data matrices of same number of columns (genes) for two comparative conditions respectively, one vector for gene names (colnames of the two matrices), and a threshold of minimum standard deviation (defaults to 0.001). The output is a list of two components: one vector of gene names for the variance-qualifying genes, and a concatenated string including all disqualifying genes. </font></p>
 <pre class="r"><code>data(STAD)
 N &lt;- ncol(STAD)
 n1 &lt;- N%/%2

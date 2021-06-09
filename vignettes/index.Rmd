@@ -286,6 +286,7 @@ gsnca.p.res
 gsnca_gsets.res[1:2]
 ```
 <br>
+
 #### Scrutiny of gene-wise standard deviation (check_sd function)
 <font size="3">
 Differential co-expression analysis is heavily dependent on the variance of data. If many genes have static expression across samples in either or both experimental conditions, GSNCA or alike algorithms may fail. The main function *MetaGSCA()* calls on a function *check_sd()* to pre-check the variance of genes in the input data matrix. Here we make this function __*check_sd()*__ accessible for users so that they may use it to check on the variance situation of the input data themselves. Input to the function include two data matrices of same number of columns (genes) for two comparative conditions respectively, one vector for gene names (colnames of the two matrices), and a threshold of minimum standard deviation (defaults to 0.001). The output is a list of two components: one vector of gene names for the variance-qualifying genes, and a concatenated string including all disqualifying genes. 
