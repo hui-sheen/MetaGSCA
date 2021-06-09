@@ -34,7 +34,7 @@ GSARboot_format(
 
 \item{R}{number of bootstrapping}
 
-\item{level}{confidence interval of this level. Defaults to 0.05 (95% CI)}
+\item{level}{confidence interval of this level. Defaults to 0.05 (95 percent CI)}
 
 \item{call}{external ultimate command exertion statement for GSAR_boot(). A character string}
 }
