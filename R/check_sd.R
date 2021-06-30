@@ -18,16 +18,16 @@
 #' @param min.sd a valid data matrix per group must have at least this much per-feature STD
 #' @return list of retained genes and to-be-removed genes for STD reason
 check_sd <- function(objt1,objt2,genes,min.sd=0.001) {
-        sd1 <- apply(objt1, 2, 'sd', na.rm=TRUE)
-        sd2 <- apply(objt2, 2, 'sd', na.rm=TRUE)
-        delcol <- (sd1 < min.sd) | (sd2 < min.sd)
-        delcol[is.na(delcol)] <- TRUE
-        genes.removed <- paste(genes[delcol], collapse = ',')
-        if (sum(delcol,na.rm=T) == 0) genes.removed <- '-'
-        if (sum(!delcol,na.rm=T) < 2) {
-						print(delcol)
-            stop(paste0('There must be at least 2 genes with standard deviation of gene expression data bigger than ', min.sd, ' in group 1 and group 2'))
-				}
-        genes.kept <- genes[!delcol]
-        list(genes.kept=genes.kept,genes.removed=genes.removed)
+	sd1 <- colSds(objt1,na.rm=TRUE) #sd1 <- apply(objt1, 2, 'sd', na.rm=TRUE)
+	sd2 <- colSds(objt2,na.rm=TRUE)
+	delcol <- (sd1 < min.sd) | (sd2 < min.sd)
+	delcol[is.na(delcol)] <- TRUE
+	genes.removed <- paste(genes[delcol], collapse = ',')
+	if (sum(delcol,na.rm=T) == 0) genes.removed <- '-'
+	if (sum(!delcol,na.rm=T) < 2) {
+		print(delcol)
+		stop(paste0('There must be at least 2 genes with standard deviation of gene expression data bigger than ', min.sd, ' in group 1 and group 2'))
+	}
+	genes.kept <- genes[!delcol]
+	list(genes.kept=genes.kept,genes.removed=genes.removed)
 }

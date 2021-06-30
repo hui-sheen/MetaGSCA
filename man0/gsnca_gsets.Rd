@@ -55,5 +55,5 @@ res <- gsnca_gsets(gsets,object,group,perm.list)
 
 }
 \seealso{
-[gsnca_p()] for the GSNCA algorithm, which further calls on [gsnca_stat()] for coexpression distance statistics.
+[gsnca.p()] for the GSNCA algorithm, which further calls on [gsnca.stat()] for coexpression distance statistics.
 }

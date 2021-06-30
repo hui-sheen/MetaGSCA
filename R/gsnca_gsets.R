@@ -5,7 +5,7 @@
 #' Due to too small gene set size (with consideration of intersection with expression data), certain gene sets have NA as p and stat results.
 #'
 #' @export
-#' @seealso [gsnca.p()] for the GSNCA algorithm, which further calls on [gsnca.stat()] for coexpression distance statistics.
+#' @seealso [gsnca_p()] for the GSNCA algorithm, which further calls on [gsnca_stat()] for coexpression distance statistics.
 #' @examples
 #' data(BRCA)
 #' smpCode <- substr(colnames(BRCA),14,15)
@@ -37,7 +37,7 @@ gsnca_gsets <- function(gsets,object,group,perm.list,cor.method='pearson',max.sk
     gset <- intersect(rownames(object),gsets[[gsetName]])
     if (length(gset)>=minGsize) {
       gem <- object[gset,]
-      gset.lst[[gsetName]] <- gsnca.p(gem,group,perm.list,cor.method=cor.method,max.skip=max.skip,min.sd=min.sd)
+      gset.lst[[gsetName]] <- gsnca_p(gem,group,perm.list,cor.method=cor.method,max.skip=max.skip,min.sd=min.sd)
     } else {
       gset.lst[[gsetName]] <- list(p=NA,stat=NA)
     }
