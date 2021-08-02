@@ -10,7 +10,7 @@
 #' @param pvalue_boot p-values from multiple bootstrap datasets
 #' @param nperm number of permutations passed on to GSNCA
 #' @param R number of bootstrapping
-#' @param level confidence interval of this level. Defaults to 0.05 (95% CI)
+#' @param level confidence interval of this level. Defaults to 0.05 (95 percent CI)
 #' @param call external ultimate command exertion statement for GSAR_boot(). A character string
 #' @param genes.not.found string of excluded genes for absence in expression matrix 
 #' @param genes.removed string of genes that were removed for STD disqualification

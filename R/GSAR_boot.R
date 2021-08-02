@@ -33,8 +33,8 @@ GSAR_boot <- function(R,gsets,object,group,nperm=100,cor.method='pearson',max.sk
   object2 <- object[, c(which(group == 2))]  
   n1 <- ncol(object1) 
 	n2 <- ncol(object2)
-  D_obs_boot.mat <- matrix(NA,nr=nGset,nc=R,dimnames=list(names(gsets),1:R))
-  pvalue_boot.mat <- matrix(NA,nr=nGset,nc=R,dimnames=list(names(gsets),1:R))
+  D_obs_boot.mat <- matrix(NA,nrow=nGset,ncol=R,dimnames=list(names(gsets),1:R))
+  pvalue_boot.mat <- matrix(NA,nrow=nGset,ncol=R,dimnames=list(names(gsets),1:R))
   for (j in seq_len(R)) {
     btrp.idx1 <- sample.int(n1, n1, replace=TRUE) #Bootstrap, group 1
     btrp.idx2 <- sample.int(n2, n2, replace=TRUE) #Bootstrap, group 2

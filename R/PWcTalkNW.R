@@ -10,13 +10,14 @@
 #' @seealso [PWcTalkNWpre()] for prior steps, [PWcTalk()] for overall compacted pathway crosstalk analysis module.
 #' @examples
 #' data(input2PWcTalk)
-#' ## One code block to execute pathway crosstalk analysis. More code lines, but enabling interactive layout tuning.
+#' ## One code block to execute pathway crosstalk analysis, enabling interactive layout tuning.
 #' preNW <- PWcTalkNWpre(input2PWcTalk,test='binary',
 #' pTh.dataset=0.01,pTh.pwPair=0.01,pTh.pw=0.01)
 #' g_tkid <- PWcTalkNW(preNW$PW.pair,preNW$PW.p)
 #' ##### PAUSE here: adjust the network layout on the pop-out window to reach a satisfaction #####
 #' coords <- tk_coords(g_tkid$tkid)
-#' g_tkid <- PWcTalkNW(preNW$PW.pair,preNW$PW.p,layout=coords,pdfW=14,pdfH=10,figname='PWcTalk',asp=0.5) 
+#' g_tkid <- PWcTalkNW(preNW$PW.pair,preNW$PW.p,layout=coords,
+#' pdfW=14,pdfH=10,figname='PWcTalk',asp=0.5) 
 #'
 #' @param PWpair A data frame of three columns. First two columns define the pairs of pathways to be connected in the resultant network. Third column quantifies pathway similarity, either p-value (out of Pearson's phi) or percentage value (out of asymmetric binary distance).
 #' @param PWp A data frame of two columns. First column has pathway names, and Second column contains meta-analysis p-values of individual pathways.
@@ -42,8 +43,7 @@ PWcTalkNW <- function(PWpair,PWp,layout=NULL,figname='PWcTalk',
 	colnames(PWpair)[3] <- 'minus.logP'
 	PW.w <- -log10(unlist(PWp[,2]))
   names(PW.w) <- PWp[,1]
-	if (!require(igraph)) stop('igraph must be preinstalled!\n')
-	g <- graph_from_data_frame(PWpair,directed=FALSE)
+	g <- igraph::graph_from_data_frame(PWpair,directed=FALSE)
 	V(g)$weight <- PW.w[V(g)$name]
 	E(g)$weight <- PWpair$minus.logP
  	E(g)$color <- 'grey'
@@ -51,13 +51,13 @@ PWcTalkNW <- function(PWpair,PWp,layout=NULL,figname='PWcTalk',
     cat('Graph of PWcTalkNW has',vcount(g),'vertices and',ecount(g),'undirectional edges. See two CSV files saved on disk.\n')
   	cat('node weight (-log10(p)), min & max:\t',min(signif(PW.w,2)), '\t',max(signif(PW.w,2)),'\n')
   	cat('edge weight (-log10(p)), min & max:\t',min(signif(PWpair$minus.logP,2)),'\t',max(signif(PWpair$minus.logP,2)),'\n')
-		tkid=tkplot(g,layout=layout_with_fr,vertex.color='lightgray',vertex.frame.color=NA,
+		tkid=igraph::tkplot(g,layout=layout_with_fr,vertex.color='lightgray',vertex.frame.color=NA,
       vertex.size=vbase*(V(g)$weight)^(power),vertex.label.cex=vlbase*degree(g)^(power),edge.width=ebase*(E(g)$weight)^(power))
  	  return(list(g=g,tkid=tkid))
 	} else {
 		pdf(paste(figname,'pdf',sep='.'),width=pdfW,height=pdfH)
     par(mar=par()$mar+c(0,10,0,10))
-		plot.igraph(g,vertex.label=V(g)$name,asp=asp,layout=layout,
+		igraph::plot.igraph(g,vertex.label=V(g)$name,asp=asp,layout=layout,
       vertex.size=vbase*(V(g)$weight)^(power),vertex.label.cex=vlbase*degree(g)^(power),
 			vertex.label.color='black',vertex.color='lightgray',vertex.frame.color=NA,
 			edge.color='lightgray',vertex.label.font=2,

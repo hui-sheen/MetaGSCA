@@ -10,13 +10,14 @@
 #' @seealso [PWcTalkNW()] for steps post this function, [PWcTalk()] for overall compacted pathway crosstalk analysis module.
 #' @examples
 #' data(input2PWcTalk)
-#' # One code block to execute pathway crosstalk analysis. More code lines, but enabling interactive layout tuning.
+#' # One code block to execute pathway crosstalk analysis, enabling interactive layout tuning.
 #' preNW <- PWcTalkNWpre(input2PWcTalk,test='binary',
 #'  pTh.dataset=0.01,pTh.pwPair=0.01,pTh.pw=0.01)
 #'  g_tkid <- PWcTalkNW(preNW$PW.pair,preNW$PW.p)
 #' ##### PAUSE here: adjust the network layout on the pop-out window to reach a satisfaction #####
 #' coords <- tk_coords(g_tkid$tkid)
-#' g_tkid <- PWcTalkNW(preNW$PW.pair,preNW$PW.p,layout=coords,pdfW=14,pdfH=10,figname='PWcTalk',asp=0.5) 
+#' g_tkid <- PWcTalkNW(preNW$PW.pair,preNW$PW.p,layout=coords,
+#' pdfW=14,pdfH=10,figname='PWcTalk',asp=0.5) 
 #'
 #' @param input2PWcTalk Input CSV file name or a data frame object. The matrix within the file or the data frame must contain gene set analysis results (p-values) across multiple datasets, as well as a bootstrap.p column which represents the meta-analysis result.
 #' @param test The test method used to quantify pathway similarity between two binary vectors. Default is binary.
@@ -27,7 +28,6 @@
 PWcTalkNWpre <- function(input2PWcTalk,test='binary',
   pTh.dataset=0.01,pTh.pwPair=0.01,pTh.pw=0.01)
 {
-  if (!require('sjstats') | !require('igraph')) stop('Please install libraries sjstats and igraph before invoking PWcTalk() function.')
   dichotGSAR.res <- dichotGSAR(input2PWcTalk,pTh.dataset=pTh.dataset)
   PWsim.res <- PWsim(dichotGSAR.res$dichotP,test=test) #crossTab
   edges <- PWsimDichot(PWsim.res,dichotGSAR.res$metaP,pTh.pwPair=pTh.pwPair,pTh.pw=pTh.pw)

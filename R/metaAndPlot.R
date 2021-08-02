@@ -62,7 +62,7 @@ metaAndPlot <- function(lst, ## list of GSAR_boot() results for multiple dataset
 			method.tau = "ML"),
 			error = function(e) return(NA)
 		)
-		if(is.na(m.boot)){
+		if(is.na(m.boot)[1]){
 			meta.p[i] <- NA
 		}else{
 			meta.p[i] <-ifelse(effect=='fixed', exp(m.boot$TE.fixed),exp(m.boot$TE.random))

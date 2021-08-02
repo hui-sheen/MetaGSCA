@@ -4,7 +4,6 @@
 #' @param test Choice of similarity measure over two binary vectors. For binary, it uses 1-dist(...,method='binary')
 #' @return A data frame for all possible pathway paris [n*(n-1)/2]. 1st & 2nd cols: the two vertices comprising an edge. 3rd col: edge connection strength. It is full connection still.
 PWsim <- function(dichotP,test=c('phi','binary')[1]) {
-  require('sjstats') # PACKAGE sjstats must be pre-installed for phi
   pws <- rownames(dichotP)
   nPW <- length(pws)
   nComb <- nPW*(nPW-1)/2
@@ -17,7 +16,7 @@ PWsim <- function(dichotP,test=c('phi','binary')[1]) {
       edge[cnt,] <- c(pws[i],pws[j])
       tab <- table(factor(dichotP[i,],levels=c(0,1)),factor(dichotP[j,],levels=c(0,1)))
       edgeVal[cnt] <- switch(tolower(test),
-        phi=crosstable_statistics(tab,statistics='phi')$p.value,
+        phi=sjstats::crosstable_statistics(tab,statistics='phi')$p.value,
         binary=1-dist(rbind(dichotP[i,],dichotP[j,]),method='binary') # inverse distance
       )           
     }
