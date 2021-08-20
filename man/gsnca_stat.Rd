@@ -10,6 +10,8 @@ gsnca_stat(objt1, objt2, cor.method = "pearson")
 \item{objt1}{dataset for condition 1, genes in columns}
 
 \item{objt2}{dataset for condition 2, genes in columns}
+
+\item{cor.method}{correlation coefficient method, the same as in function cor}
 }
 \value{
 L1-norm distance between two weight vectors
@@ -18,7 +20,8 @@ L1-norm distance between two weight vectors
 Derive distance statistics by solving eigenvector of two pairise correaltion matrix.
 }
 \examples{
-data(BRCA)
+data(meta)
+BRCA <- datasets[['BRCA']]
 N <- ncol(BRCA)
 n1 <- floor(N/2)
 objt1 <- t(BRCA[1:100,1:n1])

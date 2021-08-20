@@ -20,12 +20,12 @@ MetaGSCA_plot <- function(meta,meta.p,distinct.label) {
 		col.predict = "black",
 		smlab = ""
 	)
-	grid.text(label = distinct.label,
-						x = unit(0.12, "npc"), y = unit(0.05, "npc"),
-						just = "left", gp = gpar(fontsize = 12, fontface = "bold"))
-	grid.text(label = paste(" ",format(round(median(meta.p, na.rm = TRUE),4), nsmall=4), " [",
+	grid::grid.text(label = distinct.label,
+						x = grid::unit(0.12, "npc"), y =grid::unit(0.05, "npc"),
+						just = "left", gp = grid::gpar(fontsize = 12, fontface = "bold"))
+	grid::grid.text(label = paste(" ",format(round(median(meta.p, na.rm = TRUE),4), nsmall=4), " [",
 													format(round(quantile(meta.p, probs=0.025, na.rm = TRUE),4), nsmall=4), ", ",
 													format(round(quantile(meta.p, probs=0.975, na.rm = TRUE),4), nsmall=4), "]", sep=""),
-						x = unit(0.70, "npc"), y = unit(0.05, "npc"),
-						just = "left", gp = gpar(fontsize = 12, fontface = "bold"))
+						x = grid::unit(0.70, "npc"), y = grid::unit(0.05, "npc"),
+						just = "left", gp = grid::gpar(fontsize = 12, fontface = "bold"))
 }

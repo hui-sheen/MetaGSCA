@@ -10,6 +10,10 @@ PWsimDichot(pwPairP, metaP = NULL, pTh.pwPair = 0.01, pTh.pw = 0.01)
 \item{pwPairP}{output from function PWsim}
 
 \item{metaP}{list component $metaP of function dichotGSAR output}
+
+\item{pTh.pwPair}{threshold value applied on the overall meta-analysis p-value (p-statistic)}
+
+\item{pTh.pw}{threshold value applied on the p-value (p-statistics) of individual datasets}
 }
 \description{
 Dichotomize p-values of PW pairs according to pair p threshold (say 0.01) [and vertex metaP threshold (say 0.01)]

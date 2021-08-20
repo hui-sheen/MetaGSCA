@@ -7,7 +7,7 @@ PWsim <- function(dichotP,test=c('phi','binary')[1]) {
   pws <- rownames(dichotP)
   nPW <- length(pws)
   nComb <- nPW*(nPW-1)/2
-  edge <- matrix(nr=nComb,nc=2)
+  edge <- matrix(nrow=nComb,ncol=2)
   edgeVal <- numeric(nComb)
   cnt <- 0
   for (i in seq_len(nPW-1)) {

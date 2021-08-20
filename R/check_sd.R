@@ -4,7 +4,8 @@
 #'
 #' @export
 #' @examples
-#' data(STAD)
+#' data(meta)
+#' STAD <- datasets[['STAD']]
 #' N <- ncol(STAD)
 #' n1 <- N%/%2
 #' objt1 <- t(STAD[,1:n1])

@@ -13,11 +13,12 @@
 #' # One code block to execute pathway crosstalk analysis, enabling interactive layout tuning.
 #' preNW <- PWcTalkNWpre(input2PWcTalk,test='binary',
 #'  pTh.dataset=0.01,pTh.pwPair=0.01,pTh.pw=0.01)
-#'  g_tkid <- PWcTalkNW(preNW$PW.pair,preNW$PW.p)
-#' ##### PAUSE here: adjust the network layout on the pop-out window to reach a satisfaction #####
-#' coords <- tk_coords(g_tkid$tkid)
-#' g_tkid <- PWcTalkNW(preNW$PW.pair,preNW$PW.p,layout=coords,
-#' pdfW=14,pdfH=10,figname='PWcTalk',asp=0.5) 
+#' #Code requires XMing support (x11 server), thus being turned off.
+#' #g_tkid <- PWcTalkNW(preNW$PW.pair,preNW$PW.p)
+#' ## PAUSE here: adjust the network layout on the pop-out window to reach a satisfaction ##
+#' #coords <- tk_coords(g_tkid$tkid)
+#' #g_tkid <- PWcTalkNW(preNW$PW.pair,preNW$PW.p,layout=coords,
+#' #pdfW=14,pdfH=10,figname='PWcTalk',asp=0.5) 
 #'
 #' @param input2PWcTalk Input CSV file name or a data frame object. The matrix within the file or the data frame must contain gene set analysis results (p-values) across multiple datasets, as well as a bootstrap.p column which represents the meta-analysis result.
 #' @param test The test method used to quantify pathway similarity between two binary vectors. Default is binary.

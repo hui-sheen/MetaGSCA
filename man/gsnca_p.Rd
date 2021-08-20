@@ -33,7 +33,8 @@ list of p-value and d-statistics of GSNCA
 Gene Sets Net Correlation Analysis (GSNCA) including permutation
 }
 \examples{
-data(BRCA)
+data(meta)
+BRCA <- datasets[['BRCA']]
 smpCode <- substr(colnames(BRCA),14,15)
 grp1 <- which(smpCode=='01')
 grp2 <- which(smpCode=='11')

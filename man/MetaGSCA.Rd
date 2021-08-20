@@ -45,12 +45,9 @@ Logit transformation is applied to the binary outcome and regressed on the study
 }
 \examples{
 data(meta)
-data(BRCA)
-data(COAD)
-data(HNSC)
 data3 <- c('BRCA','COAD','HNSC')
 testSingle <- MetaGSCA(list.geneset = genesets[2],
-        list.dataset = list(BRCA=BRCA,COAD=COAD,HNSC=HNSC), 
+        list.dataset = datasets[data3], 
         list.group = groups[data3],
         names.geneset = names(genesets)[2],
         names.dataset = data3,

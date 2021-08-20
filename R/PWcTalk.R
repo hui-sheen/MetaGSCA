@@ -9,10 +9,11 @@
 #' @seealso [PWcTalkNWpre()] for the first module of prior steps, [PWcTalkNW()] for the second module of post steps.
 #' @examples
 #' data(input2PWcTalk)
-#' # One code line to execute pathway crosstalk analysis. Simple, but no flexibility for layout tuning. 
-#' PWcTalk(input2PWcTalk,test='binary',
-#'  pTh.dataset=0.01,pTh.pwPair=0.01,pTh.pw=0.01,figname='PWcTalk',
-#'  pdfW=10,pdfH=10,asp=0.7,vbase=15,ebase=2,vlbase=1,power=1/2)
+#' #Execute pathway crosstalk analysis in one command. 
+#' #Code requires XMing support (x11 server), thus being turned off.
+#' #PWcTalk(input2PWcTalk,test='binary',
+#' # pTh.dataset=0.01,pTh.pwPair=0.01,pTh.pw=0.01,figname='PWcTalk',
+#' # pdfW=10,pdfH=10,asp=0.7,vbase=15,ebase=2,vlbase=1,power=1/2)
 #' @param input2PWcTalk A data frame with 330 observations across 14 variables. Each observation corresponds to a pathway
 #' @param test Similarity measure over two binary vectors, either asymmetric Binary similarity or Pearson's Phi index 
 #' @param pTh.dataset Threshold for permutation p-statistic of a gene set co-expression in a dataset

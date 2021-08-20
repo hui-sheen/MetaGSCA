@@ -22,7 +22,8 @@ list of retained genes and to-be-removed genes for STD reason
 Check if data matrix per group has a minimum or higher per-gene STD
 }
 \examples{
-data(STAD)
+data(meta)
+STAD <- datasets[['STAD']]
 N <- ncol(STAD)
 n1 <- N\%/\%2
 objt1 <- t(STAD[,1:n1])

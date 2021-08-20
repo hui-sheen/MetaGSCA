@@ -13,11 +13,12 @@
 #' ## One code block to execute pathway crosstalk analysis, enabling interactive layout tuning.
 #' preNW <- PWcTalkNWpre(input2PWcTalk,test='binary',
 #' pTh.dataset=0.01,pTh.pwPair=0.01,pTh.pw=0.01)
-#' g_tkid <- PWcTalkNW(preNW$PW.pair,preNW$PW.p)
-#' ##### PAUSE here: adjust the network layout on the pop-out window to reach a satisfaction #####
-#' coords <- tk_coords(g_tkid$tkid)
-#' g_tkid <- PWcTalkNW(preNW$PW.pair,preNW$PW.p,layout=coords,
-#' pdfW=14,pdfH=10,figname='PWcTalk',asp=0.5) 
+#' #Code requires XMing support (x11 server), thus being turned off.
+#' #g_tkid <- PWcTalkNW(preNW$PW.pair,preNW$PW.p)
+#' ## PAUSE here: adjust the network layout on the pop-out window to reach a satisfaction ###
+#' #coords <- tk_coords(g_tkid$tkid)
+#' #g_tkid <- PWcTalkNW(preNW$PW.pair,preNW$PW.p,layout=coords,
+#' #pdfW=14,pdfH=10,figname='PWcTalk',asp=0.5) 
 #'
 #' @param PWpair A data frame of three columns. First two columns define the pairs of pathways to be connected in the resultant network. Third column quantifies pathway similarity, either p-value (out of Pearson's phi) or percentage value (out of asymmetric binary distance).
 #' @param PWp A data frame of two columns. First column has pathway names, and Second column contains meta-analysis p-values of individual pathways.

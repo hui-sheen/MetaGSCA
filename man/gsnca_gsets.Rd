@@ -42,7 +42,8 @@ For each gene-set loop, genes are overlaid to expression matrix and too small ge
 Due to too small gene set size (with consideration of intersection with expression data), certain gene sets have NA as p and stat results.
 }
 \examples{
-data(BRCA)
+data(meta)
+BRCA <- datasets[['BRCA']]
 smpCode <- substr(colnames(BRCA),14,15)
 grp1 <- which(smpCode=='01')
 grp2 <- which(smpCode=='11')

@@ -7,7 +7,8 @@
 #' @export
 #' @seealso [gsnca_p()] for the GSNCA algorithm, which further calls on [gsnca_stat()] for coexpression distance statistics.
 #' @examples
-#' data(BRCA)
+#' data(meta)
+#' BRCA <- datasets[['BRCA']]
 #' smpCode <- substr(colnames(BRCA),14,15)
 #' grp1 <- which(smpCode=='01')
 #' grp2 <- which(smpCode=='11')
