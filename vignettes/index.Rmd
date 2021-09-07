@@ -1,40 +1,14 @@
 ---
-title: <center> <h2>Tutorial of the MetaGSCA package</h2> </center>
-date: <center> <h4>`r Sys.Date()` </center>
+title: "MetaGSCA"
+author: "Hui Yu"
+package: MetaGSCA
 output: 
-  html_document:
-    fontsize: 20pt
-    toc: true
-    toc_depth: 3
-    number_sections: true
-    theme: cerulean
+	BiocStyle::html_document
+vignette: >
+	%\ VignetteIndexEntry{MetaGSCA}
+	%\ VignetteEngine{knitr::rmarkdown}
+	%\ VignetteEncoding{UTF-8}
 ---
-<!---
-%\VignetteEngine{knitr::rmarkdown}
---->
-<style type="text/css">
-
-body {
-  margin-left:430px;
-  margin-right:100px;
-}
-
-#TOC {
-  position: fixed;
-  left: 0;
-  top: 10px;
-  bottom: 10px;
-  width: 480px;
-  height: 100%;
-  overflow:auto;
-  collapse: true;
-}
-
-</style>
-  
-<div style="margin-bottom:50px;">
-</div>
-
 ```{r setup, include=FALSE, echo=FALSE, warning=FALSE}
 library(knitr)
 ```
@@ -220,25 +194,10 @@ testSingle <- MetaGSCA(list.geneset = genesets[2],
 <br>
 
 ### Pathway Crosstalk Analysis (PWcTalk function)
-<font size="3">For pathway crosstalk analysis, one call __*PWcTalk()*__ function in one line, or alternatively, execute several codelines combining __*PWcTalkpre()*__ and __*PWcTalkNW()*__ to enable greater modulation of network layout. One must execute __*MetaGSCA_Multi_Geneset()*__ function on sufficiently many gene sets (say >100) before attempting pathway crosstalk analysis. To enable swift testing of pathway cross talk analysis, we provide one example input as if it was generated from the prior workflow.</font>
+<font size="3">For pathway crosstalk analysis, one call __*PWcTalk()*__ function in one line, or alternatively, execute several codelines combining __*PWcTalkpre()*__ and __*PWcTalkNW()*__ to enable greater modulation of network layout. One must execute __*MetaGSCA()*__ function on sufficiently many gene sets (say >100) before attempting pathway crosstalk analysis. Please type *?PWcTalk* to access example commandlines centered upon the example inputdata object *input2PWcTalk*. Below is the output figure generated from executing those example commandlines.</font>
 
 **Note:** If you are connecting from a Windows desktop to a remote Linux server and run these commands in Linux terminal, you will need an X11 display assistance (such as **[Xming](https://sourceforge.net/projects/xming/)**) configured and started before you run pathway crosstalk analysis.
 
-```{r demoPWcTalk,warning=FALSE, eval=FALSE}
-data(input2PWcTalk)
-## One code line to execute pathway crosstalk analysis. Simple, but no flexibility for layout tuning. 
-PWcTalk(input2PWcTalk,test='binary',
-  pTh.dataset=0.01,pTh.pwPair=0.01,pTh.pw=0.01,figname='PWcTalk',
-  pdfW=10,pdfH=10,asp=0.7,vbase=15,ebase=2,vlbase=1,power=1/2)
-## One code block to execute pathway crosstalk analysis. More code lines, but enabling interactive layout tuning.
-preNW <- PWcTalkNWpre(input2PWcTalk,test='binary',
-  pTh.dataset=0.01,pTh.pwPair=0.01,pTh.pw=0.01)
-g_tkid <- PWcTalkNW(preNW$PW.pair,preNW$PW.p)
-##### PAUSE here: adjust the network layout on the pop-out window to reach a satisfaction #####
-coords <- tk_coords(g_tkid$tkid)
-g_tkid <- PWcTalkNW(preNW$PW.pair,preNW$PW.p,layout=coords,pdfW=14,pdfH=10,figname='PWcTalk',asp=0.5)       
-
-```
 ```{r showPWcTalkFig,echo=FALSE, out.width = "90%", fig.align='center', dpi=200, fig.cap="A demonstration pathway crosstalk network"}
 result1 <- 'PWcTalk.png' #paste(system.file("extdata", package = "MetaGSCA"), "/../vignette/PWcTalk.png", sep="")
 knitr::include_graphics(result1)
