@@ -69,7 +69,7 @@ MetaGSCA <- function(list.geneset,  ## a pre-specified gene list from a gene set
 	for (gset in gsets) { # Intersect genesets where all datasets have results.
 		dsets.res <- lapply(GSAR_boot.res,function(x) x[[gset]])
 		dsetMat <- do.call(rbind,lapply(dsets.res,function(x) x$dsetRow))
-		rownames(dsetMat) <- names.dataset
+		rownames(dsetMat) <- names(dsets.res) <- names.dataset
 		write.csv(dsetMat, paste0(gset, "_Individual Dataset GSAR Results with Bootstrapping.csv"))
 		meta.res=metaAndPlot(dsets.res,gset,nperm,nboot,
 									 method,effect)
